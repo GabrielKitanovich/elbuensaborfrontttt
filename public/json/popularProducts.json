@@ -1,0 +1,29 @@
+[
+
+{
+    "id":1,
+    "imagenHamburguesa":"/burger1.svg",
+    "nombreHamburguesa":"Bacon Storm",
+    "precioHamburguesa":"10.200"
+},
+{
+    "id":2,
+    "imagenHamburguesa":"/burger2.svg",
+    "nombreHamburguesa":"Cheddar Warrior",
+    "precioHamburguesa":"12.200"
+},
+{
+
+    "id":3,
+    "imagenHamburguesa":"/burger3.svg",
+    "nombreHamburguesa":"Crispy Dragon",
+    "precioHamburguesa":"8.500"
+},
+{
+    "id":4,
+    "imagenHamburguesa":"/burger4.svg",
+    "nombreHamburguesa":"Pesto Breeze",
+    "precioHamburguesa":"10.500"
+}
+
+]
