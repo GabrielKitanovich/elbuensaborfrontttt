@@ -18,7 +18,7 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <body>
-          <ClientLayout>{children}</ClientLayout> {/* Use ClientLayout here */}
+          <ClientLayout>{children}</ClientLayout> {/* Layout para todas las páginas */}
         </body>
       </html>
     </Providers>

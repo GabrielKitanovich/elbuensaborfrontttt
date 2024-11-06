@@ -7,5 +7,5 @@ export type MenuItem = {
 };
 
 export type OrderItem = MenuItem & {
-    quantity: number; // Asegúrate de que esta propiedad exista
+    quantity: number;
 };

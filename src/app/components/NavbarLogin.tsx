@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function NavbarAdmin() {
+export default function NavbarLogin() {
   return (
     <>
     <div className='bg-blue-500 h-24'>

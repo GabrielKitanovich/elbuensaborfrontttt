@@ -31,14 +31,14 @@ export default function Navbar() {
                 <Link href="#">Productos</Link>
               </li>
               <li>
-                <Link href="#">Sucursales</Link>
+                <Link href="/sucursales">Sucursales</Link>
               </li>
             </ul>
           </div>
           <div className="flex space-x-6 items-center">
             <ul className="flex space-x-6">
               <li>
-                <Link href="/">Login</Link>
+                <Link href="/login">Login</Link>
               </li>
               <li>
                 <Link href="/about">Registrarse</Link>
