@@ -2,28 +2,36 @@
 
 {
     "id":1,
-    "imagenHamburguesa":"/burger1.svg",
-    "nombreHamburguesa":"Bacon Storm",
-    "precioHamburguesa":"10.200"
+    "image":"/burger1.svg",
+    "name":"Bacon Storm",
+    "price":10200,
+    "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
 },
 {
     "id":2,
-    "imagenHamburguesa":"/burger2.svg",
-    "nombreHamburguesa":"Cheddar Warrior",
-    "precioHamburguesa":"12.200"
+    "image":"/burger2.svg",
+    "name":"Cheddar Warrior",
+    "price":12200,
+    "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
 },
 {
 
     "id":3,
-    "imagenHamburguesa":"/burger3.svg",
-    "nombreHamburguesa":"Crispy Dragon",
-    "precioHamburguesa":"8.500"
+    "image":"/burger3.svg",
+    "name":"Crispy Dragon",
+    "price":8500,
+    "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
 },
 {
     "id":4,
-    "imagenHamburguesa":"/burger4.svg",
-    "nombreHamburguesa":"Pesto Breeze",
-    "precioHamburguesa":"10.500"
+    "image":"/burger4.svg",
+    "name":"Pesto Breeze",
+    "price":10500,
+    "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
 }
 
 ]

@@ -2,10 +2,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface Producto {
-    id: number;
-    imagenHamburguesa: string;
-    nombreHamburguesa: string;
-    precioHamburguesa: string;
+    id: number,
+    image:string,
+    name: string,
+    price: number,
+    description: string,
 }
 
 export const popularProductApi = createApi({

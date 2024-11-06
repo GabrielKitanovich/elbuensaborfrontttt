@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ export default function Footer() {
             <div>
                 <ul className="space-y-3">
                     {navFooter.map((item , index) => (
-                        <li className="text-white">{item}</li>
+                        <li className="text-white" key={index}>{item}</li>
                     ))}
                 </ul>
                
@@ -45,6 +45,7 @@ export default function Footer() {
             <div className="space-y-5">
                 {redes.map((redes , index) =>(
                     <Image
+                    key={index}
                     src={redes}
                     alt={redes}
                     width={24}
@@ -58,7 +59,7 @@ export default function Footer() {
                 <p className="text-white ">© 2024 El Buen Sabor Todos Los Derechos Reservados  </p>
                 <ul className="space-x-3 flex">
                         {avisos.map((item , index) => (
-                        <li className="text-white">{item}</li>
+                        <li className="text-white" key={index}>{item}</li>
                     ))}
                 </ul>
                 <p className="text-white">+54 567 56789</p>

@@ -1,0 +1,61 @@
+[
+
+    {
+        "id":1,
+        "imagenHamburguesa":"/burger1.svg",
+        "nombreHamburguesa":"Bacon Storm",
+        "precioHamburguesa":10200,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+    },
+    {
+        "id":2,
+        "imagenHamburguesa":"/burger5.svg",
+        "nombreHamburguesa":"Cheesy Bluster",
+        "precioHamburguesa":10200,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+    },
+    {
+    
+        "id":3,
+        "imagenHamburguesa":"/burger3.svg",
+        "nombreHamburguesa":"Crispy Dragon",
+        "precioHamburguesa":8500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    },
+    {
+    
+        "id":4,
+        "imagenHamburguesa":"/burger6.svg",
+        "nombreHamburguesa":"Forest Patty",
+        "precioHamburguesa":10200,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    },
+    {
+        "id":5,
+        "imagenHamburguesa":"/burger4.svg",
+        "nombreHamburguesa":"Pesto Breeze",
+        "precioHamburguesa":10500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    },
+    {
+        "id":6,
+        "imagenHamburguesa":"/burger7.svg",
+        "nombreHamburguesa":"Rainbow Burger",
+        "precioHamburguesa":10500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    },
+    {
+        "id":7,
+        "imagenHamburguesa":"/burger2.svg",
+        "nombreHamburguesa":"Cheddar Warrior",
+        "precioHamburguesa":12200,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    }
+   
+    
+    ]

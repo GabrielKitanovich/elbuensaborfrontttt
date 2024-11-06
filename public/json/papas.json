@@ -1,0 +1,36 @@
+[
+
+    {
+        "id":12,
+        "imagenPapas":"/papa1.svg",
+        "nombrePapas":"Goblin’s Gold Fries",
+        "precioPapas":2500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+    },
+    {
+        "id":13,
+        "imagenPapas":"/papa2.svg",
+        "nombrePapas":"Fantasy Egg Wrap",
+        "precioPapas":2500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+    },
+    {
+    
+        "id":14,
+        "imagenPapas":"/papa3.svg",
+        "nombrePapas":"Mystic Magic Nuggets",
+        "precioPapas":2500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    },
+    {
+    
+        "id":15,
+        "imagenPapas":"/papa4.svg",
+        "nombrePapas":"Ring Onion",
+        "precioPapas":4000,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    }
+    
+    ]

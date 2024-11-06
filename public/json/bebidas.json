@@ -1,0 +1,36 @@
+[
+
+    {
+        "id":8,
+        "imagenBebida":"/bebida1.svg",
+        "nombreBebida":"Coca Cola",
+        "precioBebida":2500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+    },
+    {
+        "id":9,
+        "imagenBebida":"/bebida2.svg",
+        "nombreBebida":"Pepsi",
+        "precioBebida":2500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+    },
+    {
+    
+        "id":10,
+        "imagenBebida":"/bebida3.svg",
+        "nombreBebida":"Sprite",
+        "precioBebida":2500,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    },
+    {
+    
+        "id":11,
+        "imagenBebida":"/bebida4.svg",
+        "nombreBebida":"Heineken",
+        "precioBebida":4000,
+        "descripcion":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere, ligula eu facilisis porttitor."
+
+    }
+    
+    ]

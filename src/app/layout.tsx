@@ -1,22 +1,8 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import Navbar from "./components/Navbar";
-import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+// src/app/layout.tsx
 import { Providers } from "@/redux/provider";
-import Footer from "./components/Footer";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import "./globals.css";
+import ClientLayout from "./components/ClientLayout";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,20 +11,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-    <body
-    >
-      <Providers>
-        <Navbar/> 
-        {children}
-        <Footer/>
-      </Providers>
-    </body>
-    </html>
-    
+    <Providers>
+      <html lang="en">
+        <body>
+          <ClientLayout>{children}</ClientLayout> {/* Use ClientLayout here */}
+        </body>
+      </html>
+    </Providers>
   );
 }
