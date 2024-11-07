@@ -36,11 +36,7 @@ export default function Shop({setShowShop}: ShopProps) {
         };
 
         try {
-            const saveSells = await axios.post("http://localhost:8080/api/v1/sells", cartItems, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+
 
             const response = await axios.post("http://localhost:8080/api/v1/payments/createmp", null, {
                 params: paymentData
@@ -183,8 +179,8 @@ export default function Shop({setShowShop}: ShopProps) {
                             <div
                                 className="bg-[#14c9e1] text-white w-full mt-4 items-center cursor-pointer px-4 py-2 flex justify-center gap-4 rounded-lg shadow-lg"
                                 onClick={() => {
-                                    createPreference();
                                     handlePostProductos();
+                                    createPreference();
                                 }}>
                                 <Image
                                     src={"/mp.svg"}
@@ -196,7 +192,10 @@ export default function Shop({setShowShop}: ShopProps) {
                             </div>
                             <div
                                 className="bg-[#ffde25] text-white w-full mt-4 items-center cursor-pointer px-4 py-2 flex justify-center gap-4 rounded-lg shadow-lg"
-                                onClick={handlePayment}>
+                                onClick={() => {
+                                    handlePostProductos();
+                                    createPreference();
+                                }}>
                                 <Image
                                     src={"/bitcoin.svg"}
                                     alt="mercado pago"

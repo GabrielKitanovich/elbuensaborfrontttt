@@ -28,18 +28,37 @@ export default function CreateProduct() {
 
     // Maneja los cambios en el formulario
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const {name, value} = e.target;
+        const {name, value, files} = e.target as HTMLInputElement;
+
         setProductData((prevData) => ({
             ...prevData,
-            [name]: value,
+            [name]: files ? files[0] : value,  // Si hay un archivo, asigna el primer archivo; si no, asigna el valor
         }));
     };
 
+
     // Envía los datos al backend
+// Envía los datos al backend
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/products', productData);
+            const formData = new FormData();
+            formData.append('name', productData.name);
+            formData.append('price', productData.price);
+            formData.append('description', productData.description);
+            formData.append('category', productData.category);
+            formData.append('stock', productData.stock);
+            formData.append('max_stock', productData.max_stock);
+            if (productData.image) {
+                formData.append('image', productData.image);  // Añade el archivo de imagen
+            }
+
+            const response = await axios.post('http://localhost:8080/api/v1/products', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
             setMessage('Producto creado exitosamente');
             setProductData({
                 name: '',
@@ -55,6 +74,7 @@ export default function CreateProduct() {
             console.error(error);
         }
     };
+
 
     return (
         <div className="bg-gray-100 py-10 min-h-screen flex items-center justify-center">
@@ -142,7 +162,8 @@ export default function CreateProduct() {
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="max_stock" className="block text-sm font-medium text-gray-600">Subir imagen</label>
+                        <label htmlFor="max_stock" className="block text-sm font-medium text-gray-600">Subir
+                            imagen</label>
                         <input
                             type="file"
                             className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
