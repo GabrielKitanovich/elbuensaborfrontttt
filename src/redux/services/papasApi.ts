@@ -1,23 +1,24 @@
 // src/redux/services/popularProductApi.ts
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 interface Producto {
-    id: number;
-    imagenPapas: string;
-    nombrePapas: string;
-    precioPapas: number;
-    descripcion: string
+    id: string;
+    image: string;
+    name: string;
+    category: string;
+    price: number;
+    description: string;
 }
 
 export const papasApi = createApi({
     reducerPath: "papas",
-    baseQuery: fetchBaseQuery({ baseUrl: '/json/' }),
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:8080/api/v1/products/fries'}),
     endpoints: (builder) => ({
         getAllProductos: builder.query<Producto[], void>({
-            query: () => 'papas.json',
+            query: () => '',
         }),
     }),
 });
 
 // Asegúrate de exportar el hook
-export const { useGetAllProductosQuery } = papasApi;
+export const {useGetAllProductosQuery} = papasApi;

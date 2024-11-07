@@ -1,23 +1,24 @@
 // src/redux/services/popularProductApi.ts
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 interface Producto {
-        id:number
-        imagenHamburguesa:string,
-        nombreHamburguesa:string,
-        precioHamburguesa:number,
-        descripcion:string,
+    id: string
+    image: string,
+    name: string,
+    price: number,
+    description: string,
 }
 
 export const hamburguesasApi = createApi({
     reducerPath: "hamburguesas",
-    baseQuery: fetchBaseQuery({ baseUrl: '/json/' }),
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:8080/api/v1/products/burgers'}),
     endpoints: (builder) => ({
         getAllProductos: builder.query<Producto[], void>({
-            query: () => 'hamburguesas.json',
+            query: () => '', // La ruta será '/api/v1/products' para obtener todos los productos
         }),
     }),
 });
 
+
 // Asegúrate de exportar el hook
-export const { useGetAllProductosQuery } = hamburguesasApi;
+export const {useGetAllProductosQuery} = hamburguesasApi;

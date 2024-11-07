@@ -24,31 +24,37 @@ export default function Burguers() {
     return (
         <>
             <h2 className="my-16 mx-6 text-xl font-semibold">Productos de Hamburguesas</h2>
-            <div className="grid grid-cols-2 gap-4">
-                {productos?.map((producto) => (
-                    <div key={producto.id} className="flex border p-4 gap-4"> 
-                        <img src={producto.imagenHamburguesa} alt={producto.nombreHamburguesa} />
-    
-                        <div className="space-y-3">
-                            <h2 className="text-lg font-semibold">{producto.nombreHamburguesa}</h2>
-                            <p className="text-gray-600">Precio: ${producto.precioHamburguesa}</p>
-                            <p className="text-gray-600">{producto.descripcion}</p>
-                            <button 
-                                className="bg-tertiary text-white w-[163px] h-[40px]"
-                                onClick={() => handleAddToCart({ 
-                                    id: producto.id, 
-                                    image: producto.imagenHamburguesa, 
-                                    name: producto.nombreHamburguesa, 
-                                    price: producto.precioHamburguesa, 
-                                    description: producto.descripcion, 
-                                    quantity: 1 
-                                })}
-                            >
-                                Agregar
-                            </button>
+            <div className="flex justify-center flex-wrap w-full max-w-[1000px] mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {productos?.map((producto) => (
+                        <div key={producto.id}
+                             className="flex flex-col border border-gray-300 rounded-lg overflow-hidden p-4 shadow-md">
+                            <img
+                                src={producto.image}
+                                alt={producto.name}
+                                className="w-full h-40 object-cover mb-4"
+                            />
+                            <div className="space-y-2">
+                                <h2 className="text-lg font-semibold">{producto.name}</h2>
+                                <p className="text-gray-600">Precio: ${producto.price}</p>
+                                <p className="text-gray-600">{producto.description}</p>
+                                <button
+                                    className="bg-blue-600 text-white w-full py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                                    onClick={() => handleAddToCart({
+                                        id: producto.id,
+                                        image: producto.image,
+                                        name: producto.name,
+                                        price: producto.price,
+                                        description: producto.description,
+                                        quantity: 1
+                                    })}
+                                >
+                                    Agregar al carrito
+                                </button>
+                            </div>
                         </div>
-                    </div> 
-                ))}
+                    ))}
+                </div>
             </div>
         </>
     );

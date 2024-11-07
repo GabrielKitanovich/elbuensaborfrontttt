@@ -2,19 +2,20 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface Producto {
-    id: number;
-    imagenBebida: string;
-    nombreBebida: string;
-    precioBebida: number;
-    descripcion: string
+    id: string
+    image: string,
+    name: string,
+    price: number,
+    category: string,
+    description: string,
 }
 
 export const bebidasApi = createApi({
     reducerPath: "bebidas",
-    baseQuery: fetchBaseQuery({ baseUrl: '/json/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/v1/products/drinks' }),
     endpoints: (builder) => ({
         getAllProductos: builder.query<Producto[], void>({
-            query: () => 'bebidas.json',
+            query: () => '',
         }),
     }),
 });
