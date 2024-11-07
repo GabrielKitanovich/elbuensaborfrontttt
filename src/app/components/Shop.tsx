@@ -24,6 +24,7 @@ export default function Shop({setShowShop}: ShopProps) {
     const [preferenceId, setPreferenceId] = useState<string | null>(null);
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart.items);
+    console.log("QUEEE ESOSOSOSOS " + cartItems)
 
     const [postProducto, {isLoading, error}] = usePostProductosMutation();
 
@@ -41,6 +42,7 @@ export default function Shop({setShowShop}: ShopProps) {
             const response = await axios.post("http://localhost:8080/api/v1/payments/createmp", null, {
                 params: paymentData
             });
+
             const paymentUrl = response.data;
             console.log("URL de pago recibida:", paymentUrl);
             window.location.href = paymentUrl; // Redirigir al usuario a MercadoPago
@@ -69,6 +71,7 @@ export default function Shop({setShowShop}: ShopProps) {
             if (response.data && response.data.data && response.data.data.universalUrl) {
                 // Redirige al usuario a la URL universal de Binance
                 window.location.href = response.data.data.universalUrl;
+
             } else {
                 setResponseMessage('Error al crear el pago: ' + (response.data?.message || "Detalles no disponibles"));
             }
@@ -80,18 +83,41 @@ export default function Shop({setShowShop}: ShopProps) {
         }
     };
     // Enviar los productos como venta
-    const handlePostProductos = () => {
-        const ventasToSend = cartItems.map(item => ({
-            id: item.id,
-            image: item.image,
-            name: item.name,
-            price: item.price,
-            description: item.description,
-            quantity: item.quantity
-        }));
-        console.log("ESTO SON LOS QUE VAN A COMPRARSE ", cartItems)
-        postProducto(ventasToSend); // Llamada a la API para enviar las ventas
+    const handlePostProductos = async () => {
+        if (cartItems.length === 0) {
+            console.error("El carrito está vacío, no se pueden enviar productos.");
+            return;
+        }
+
+        console.log("Carrito enviado:", cartItems);
+        try {
+            const ventasToSend = cartItems.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                description: item.description,
+                quantity: item.quantity
+            }));
+
+            console.log("ESTO SON LOS QUE VAN A COMPRARSE", ventasToSend);
+
+            const response = await axios.post(
+                'http://localhost:8080/api/v1/sells',  // Cambia la URL al endpoint correcto
+                ventasToSend,
+                {
+                    params: {paymentType: 'tarjeta'}, // Especifica el tipo de pago aquí
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+            );
+
+            console.log("Respuesta del servidor:", response.data);
+        } catch (error) {
+            console.error("Error al enviar las ventas:", error.response ? error.response.data : error.message);
+        }
     };
+
 
     const handleIncreaseQuantity = (itemId: number) => {
         const item = cartItems.find(item => item.id === itemId);
@@ -179,8 +205,8 @@ export default function Shop({setShowShop}: ShopProps) {
                             <div
                                 className="bg-[#14c9e1] text-white w-full mt-4 items-center cursor-pointer px-4 py-2 flex justify-center gap-4 rounded-lg shadow-lg"
                                 onClick={() => {
-                                    handlePostProductos();
                                     createPreference();
+                                    handlePostProductos();
                                 }}>
                                 <Image
                                     src={"/mp.svg"}
@@ -193,8 +219,8 @@ export default function Shop({setShowShop}: ShopProps) {
                             <div
                                 className="bg-[#ffde25] text-white w-full mt-4 items-center cursor-pointer px-4 py-2 flex justify-center gap-4 rounded-lg shadow-lg"
                                 onClick={() => {
+                                    handlePayment();
                                     handlePostProductos();
-                                    createPreference();
                                 }}>
                                 <Image
                                     src={"/bitcoin.svg"}

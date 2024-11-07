@@ -15,7 +15,7 @@ export default function NavbarAdmin() {
             <Link href={"/admin"}>
                 <h2 className='text-white font-extrabold underline hover:text-blue-300'>Añadir producto</h2>
             </Link>
-            <Link href={"/sells"}>
+            <Link href={"/admin/ventas"}>
                 <h2 className='text-white font-extrabold underline hover:text-blue-300'>Ventas</h2>
             </Link>
 
