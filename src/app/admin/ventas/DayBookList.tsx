@@ -33,26 +33,27 @@ export default function DayBookList() {
     }, []);
 
     return (
-        <div className="w-full bg-white p-8 rounded-xl shadow-lg"> {/* Eliminado `min-h-screen flex items-center justify-center` */}
+        <div className="w-full bg-white p-8 rounded-xl shadow-lg">
             <h2 className="text-3xl font-semibold text-center text-gray-700 mb-6">Registros de DayBook</h2>
             {loading ? (
                 <p className="text-center text-gray-500">Cargando registros...</p>
             ) : error ? (
                 <p className="text-center text-red-500">{error}</p>
             ) : (
-                <ul className="space-y-4">
-                    {dayBooks.map((dayBook) => (
-                        <li key={dayBook.id} className="p-4 border rounded-lg shadow-sm">
-                            <h3 className="text-xl font-semibold text-gray-800">{dayBook.description}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {dayBooks.map((dayBook, index) => (
+                        <div key={dayBook.id} className="p-4 border rounded-lg shadow-sm">
+                            <h5 className="text-[10px] font-semibold text-gray-800"> {/* Tamaño de fuente ajustado */}
+                                {['VENTAS', 'CASH', 'CMV', 'MERCADERIAS'][index % 4]}
+                            </h5>
                             <p className="text-gray-600">Monto: ${dayBook.amount.toFixed(2)}</p>
                             <p className="text-gray-600">Tipo: {dayBook.type}</p>
                             <p className="text-gray-600">Tipo de entrada: {dayBook.entryType}</p>
                             <p className="text-gray-600">Fecha: {new Date(dayBook.createdAt).toLocaleString()}</p>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
 }
-
