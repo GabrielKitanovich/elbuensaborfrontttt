@@ -4,6 +4,20 @@ import {useSelector, useDispatch} from "react-redux";
 import {RootState} from "@/redux/store";
 import {addToCart, decreaseQuantity, removeFromCart, clearCart} from "@/redux/cartSlice";
 import {Dispatch, SetStateAction, useState} from "react";
+
+// Define the Product type with the image property
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    quantity: number;
+    image: string; // Add the image property
+};
+
+type CartItem = Product & {
+    image: string;
+};
 import axios from "axios";
 import {initMercadoPago, Wallet} from '@mercadopago/sdk-react';
 import {usePostProductosMutation} from "@/redux/services/ventasAPI";
@@ -13,20 +27,18 @@ type ShopProps = {
 };
 
 export default function Shop({setShowShop}: ShopProps) {
-    const [loading, setLoading] = useState(false);
+    const cartItems = useSelector((state: RootState) => state.cart.items) as CartItem[];
     const [responseMessage, setResponseMessage] = useState('');
+    const [preferenceId, setPreferenceId] = useState<string | null>(null);
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+
+    const [postProducto, {isLoading, error}] = usePostProductosMutation();
 
     // Inicialización de MercadoPago
     initMercadoPago("APP_USR-9dda84a6-71dc-4c7f-b0e7-366e6097cbcb", {
         locale: "es-AR"
     });
-
-    const [preferenceId, setPreferenceId] = useState<string | null>(null);
-    const dispatch = useDispatch();
-    const cartItems = useSelector((state: RootState) => state.cart.items);
-    console.log("QUEEE ESOSOSOSOS " + cartItems)
-
-    const [postProducto, {isLoading, error}] = usePostProductosMutation();
 
     // Crear la preferencia de pago para MercadoPago
     const createPreference = async () => {
@@ -37,8 +49,6 @@ export default function Shop({setShowShop}: ShopProps) {
         };
 
         try {
-
-
             const response = await axios.post("http://localhost:8080/api/v1/payments/createmp", null, {
                 params: paymentData
             });
@@ -53,7 +63,7 @@ export default function Shop({setShowShop}: ShopProps) {
     };
 
     //TOTALLLLLLL
-    const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+
 
     const handlePayment = async () => {
         setLoading(true);
@@ -83,12 +93,11 @@ export default function Shop({setShowShop}: ShopProps) {
         }
     };
     // Enviar los productos como venta
-    const handlePostProductos = async () => {
+    const handlePostProductos = async (paymentType: string) => {
         if (cartItems.length === 0) {
             console.error("El carrito está vacío, no se pueden enviar productos.");
             return;
         }
-
         console.log("Carrito enviado:", cartItems);
         try {
             const ventasToSend = cartItems.map(item => ({
@@ -98,26 +107,28 @@ export default function Shop({setShowShop}: ShopProps) {
                 description: item.description,
                 quantity: item.quantity
             }));
-
             console.log("ESTO SON LOS QUE VAN A COMPRARSE", ventasToSend);
-
             const response = await axios.post(
                 'http://localhost:8080/api/v1/sells',  // Cambia la URL al endpoint correcto
                 ventasToSend,
                 {
-                    params: {paymentType: 'tarjeta'}, // Especifica el tipo de pago aquí
+                    params: { paymentType }, // Especifica el tipo de pago aquí
                     headers: {
                         'Content-Type': 'application/json',
                     }
                 }
             );
-
             console.log("Respuesta del servidor:", response.data);
         } catch (error) {
             console.error("Error al enviar las ventas:", error ? error : error);
         }
     };
 
+    // Ejemplo de uso de handlePostProductos con un tipo de pago específico
+
+
+    //TOTALLLLLLL
+    const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
 
     const handleIncreaseQuantity = (itemId: number) => {
         const item = cartItems.find(item => item.id === itemId);
@@ -206,7 +217,7 @@ export default function Shop({setShowShop}: ShopProps) {
                                 className="bg-[#14c9e1] text-white w-full mt-4 items-center cursor-pointer px-4 py-2 flex justify-center gap-4 rounded-lg shadow-lg"
                                 onClick={() => {
                                     createPreference();
-                                    handlePostProductos();
+                                    handlePostProductos("mercadoPago");
                                 }}>
                                 <Image
                                     src={"/mp.svg"}
@@ -220,11 +231,11 @@ export default function Shop({setShowShop}: ShopProps) {
                                 className="bg-[#ffde25] text-white w-full mt-4 items-center cursor-pointer px-4 py-2 flex justify-center gap-4 rounded-lg shadow-lg"
                                 onClick={() => {
                                     handlePayment();
-                                    handlePostProductos();
+                                    handlePostProductos("Binance");
                                 }}>
                                 <Image
                                     src={"/bitcoin.svg"}
-                                    alt="mercado pago"
+                                    alt="Bitcoin"
                                     width={32}
                                     height={32}
                                 />

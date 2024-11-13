@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store"; // Importa RootState según tu configuración
 export interface Product {
   id: number;
-  image: string;
   name: string;
   price: number;
   description: string;
@@ -16,8 +15,11 @@ interface CartState {
 
 // Función para cargar el carrito desde localStorage
 const loadCartFromLocalStorage = (): Product[] => {
-  const storedCart = localStorage.getItem("cart");
-  return storedCart ? JSON.parse(storedCart) : [];
+  if (typeof window !== "undefined") {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  }
+  return [];
 };
 
 const initialState: CartState = {
@@ -38,25 +40,33 @@ const cartSlice = createSlice({
         const newProduct = { ...action.payload, quantity: 1 };
         state.items.push(newProduct);
       }
-      localStorage.setItem("cart", JSON.stringify(state.items));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cart", JSON.stringify(state.items));
+      }
     },
     decreaseQuantity(state, action: PayloadAction<number>) {
       const existingProductIndex = state.items.findIndex(item => item.id === action.payload);
       if (existingProductIndex >= 0 && state.items[existingProductIndex].quantity > 1) {
         state.items[existingProductIndex].quantity -= 1;
       }
-      localStorage.setItem("cart", JSON.stringify(state.items));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cart", JSON.stringify(state.items));
+      }
     },
     removeFromCart(state, action: PayloadAction<number>) {
       const existingProductIndex = state.items.findIndex(item => item.id === action.payload);
       if (existingProductIndex >= 0) {
         state.items.splice(existingProductIndex, 1);
       }
-      localStorage.setItem("cart", JSON.stringify(state.items));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cart", JSON.stringify(state.items));
+      }
     },
     clearCart(state) {
       state.items = [];
-      localStorage.removeItem("cart");
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("cart");
+      }
     },
   },
 });
@@ -73,4 +83,3 @@ export const { addToCart, decreaseQuantity, removeFromCart, clearCart } = cartSl
 
 // Exporta el reducer por defecto
 export default cartSlice.reducer;
-
