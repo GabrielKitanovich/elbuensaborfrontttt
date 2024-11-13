@@ -14,8 +14,12 @@ const config: Config = {
         primary: "#CBBCA5",
         tertiary:"#AB0000"
       },
+      maxWidth: {
+        'max-4xl': '4000px',  // Añadir un tamaño personalizado
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

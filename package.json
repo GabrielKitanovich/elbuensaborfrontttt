@@ -15,6 +15,7 @@
     "@types/mercadopago": "^1.5.11",
     "axios": "^1.7.7",
     "binance-api-node": "^0.12.7",
+    "elbuensabor": "file:",
     "leaflet": "^1.9.4",
     "mercadopago": "^2.0.15",
     "next": "14.2.13",

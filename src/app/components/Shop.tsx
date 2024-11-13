@@ -114,7 +114,7 @@ export default function Shop({setShowShop}: ShopProps) {
 
             console.log("Respuesta del servidor:", response.data);
         } catch (error) {
-            console.error("Error al enviar las ventas:", error.response ? error.response.data : error.message);
+            console.error("Error al enviar las ventas:", error ? error : error);
         }
     };
 
@@ -185,7 +185,7 @@ export default function Shop({setShowShop}: ShopProps) {
                                             Eliminar
                                         </button>
                                     </div>
-                                    <Image src={item.image} alt={item.name} width={70} height={70}/>
+                                    <Image src={item.image} alt={item.name} width={100} height={100}/>
                                 </li>
                             ))}
                         </ul>
