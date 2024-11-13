@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 // Define el tipo para los datos del producto
 interface ProductData {
     name: string;
@@ -71,7 +72,6 @@ export default function CreateProduct() {
         }
     };
 
-
     // Envía los datos al backend
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -110,8 +110,8 @@ export default function CreateProduct() {
     };
 
     return (
-        <div className="bg-gray-100 py-10 min-h-screen flex items-center justify-center">
-            <div className="max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg">
+        <div className="bg-gray-100 py-10 min-h-screen flex flex-col items-center justify-center">
+            <div className="max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg mb-8">
                 <h2 className="text-3xl font-semibold text-center text-gray-700 mb-6">Crear Producto</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
